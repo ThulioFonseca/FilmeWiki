@@ -1,0 +1,180 @@
+﻿
+
+@model FilmeWiki.Models.FilmeGeneroViewModel
+
+@{
+    ViewData["Title"] = "Filmes";
+}
+
+<div class="container mt-3">
+
+    <h2 class="fw-bold">
+        <i class="bi bi-film"></i>
+        Filmes</h2>
+     <hr/>
+    <h7 class="fw-light">Confira a lista com todos os filmes cadastrados, adicione um novo, altere ou exclua um filme existente.</h7>
+
+ 
+    <div class="container mt-5 mb-4">
+
+        <form asp-controller="Filmes" asp-action="Index">
+            
+            <div class="row row-cols-auto">
+                
+                <div class="col">
+
+
+                    <select asp-for="filmeGenero" asp-items="Model.generos" type="button" class="btn btn-secondary dropdown-menu-dark dropdown-toggle">
+
+                        <option class="" value="">Todos</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col">
+                    
+                        <div class="input-group">
+
+                            <input type="text" class="form-control" name="criterioBusca" placeholder="Buscar filme" aria-label="Nome Filme" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                                
+                                <i class="bi bi-search"></i>
+                                
+                            </button>
+
+                        </div>
+
+                </div>
+                   <div class="col ms-auto">
+
+                        <a asp-action="Create" class="btn btn-primary">Adicionar Filme</a>
+
+                  </div>
+                
+            </div>
+
+        </form>
+    </div>
+
+
+          
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.filmes[0].Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.filmes[0].Lancamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.filmes[0].Genero)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.filmes[0].Classificacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.filmes[0].Preco)
+            </th>
+            <th class="text-center">
+                Ações
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.filmes) {
+        <tr class="align-middle">
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lancamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genero)
+            </td>
+            <td class="">
+                        @switch (item.Classificacao)
+                        {
+                            case "L":
+                            
+                                    <div class="d-flex justify-content-center"> 
+
+                                         <img src="~/images/L.png" class="img-responsive  ">
+                                        
+                                    </div>                      
+                                            
+                                break;
+                                
+                            case "10":
+                            
+                                <div class="d-flex justify-content-center"> 
+                                    
+                                    <img src="~/images/10.png" class="img-responsive "> 
+
+                                 </div>
+                                break;
+                            case "12":
+                            
+                                 <div class="d-flex justify-content-center"> 
+                                     
+                                    <img src="~/images/12.png" class="img-responsive "> 
+                                    
+                                </div>
+                                break;
+                            case "14":
+                                <div class="d-flex justify-content-center"> 
+                                     
+                                    <img src="~/images/14.png" class="img-responsive "> 
+                                    
+                                </div>
+                                break;
+                            case "16":
+                                <div class="d-flex justify-content-center"> 
+                                     
+                                    <img src="~/images/16.png" class="img-responsive "> 
+                                    
+                                </div>
+                                break;
+                            case "18":
+                                 <div class="d-flex justify-content-center"> 
+                                     
+                                    <img src="~/images/18.png" class="img-responsive "> 
+                                    
+                                </div>
+                                break;
+                            default:
+                                <span class="badge badge-pill badge-success">L</span>
+                                break;
+                        }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td class="text-center">
+                <a asp-action="Edit" asp-route-id="@item.ID" class ="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar Filme">
+
+                  <i class="bi bi-pencil"></i>
+
+                </a> 
+                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver detalhes">
+                    
+                  <i class="bi bi-list-ul"></i>
+                  
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Remover filme">
+
+                   <i class="bi bi-eraser"></i>
+
+
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+

@@ -1,0 +1,52 @@
+﻿@model FilmeWiki.Models.Filme
+
+@{
+    ViewData["Title"] = "Excluir Filme";
+}
+<div class="container mt-3">
+<h2>Excluir Filme</h2>
+<hr />
+
+<h4 class="fw-light mb-5">Tem certeza que deseja excluir 
+    
+    <span class="text-danger fw-bold" > @Model.Titulo </span> 
+       
+    ?
+ </h4>
+
+<div>
+    
+     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lancamento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lancamento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Genero)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Genero)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> 
+        <a asp-action="Index" class= "btn btn-warning">Voltar </a>
+    </form>
+</div>
+</div>

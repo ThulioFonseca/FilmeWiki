@@ -1,0 +1,121 @@
+﻿@model FilmeWiki.Models.CinemaEstadoViewModel
+
+@{
+    ViewData["Title"] = "Cinemas";
+}
+
+<div class="container mt-3">
+
+    <h2 class="fw-bold">
+         <i class="bi bi-camera-reels-fill"></i>
+        Cinemas</h2>
+    <hr/>
+    <h7 class="fw-light">Confira a lista com todos os cinemas cadastrados, adicione um novo, altere ou exclua um cinema existente.</h7>
+    
+
+    <div class="container mt-5 mb-4">
+
+        <form asp-controller="Cinemas" asp-action="Index">
+            
+            <div class="row row-cols-auto">
+                
+                <div class="col">
+
+
+                    <select asp-for="cinemaEstado" asp-items="Model.estados" type="button" class="btn btn-secondary dropdown-menu-dark dropdown-toggle">
+
+                        <option class="" value="">Todos</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col">
+                    
+                        <div class="input-group">
+
+                            <input type="text" class="form-control" name="criterioBusca" placeholder="Buscar Cinema" aria-label="Nome do Cinema" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+
+                                <i class="bi bi-search"></i>
+                                
+                            </button>
+
+                        </div>
+
+                </div>
+                <div class="col ms-auto">
+
+                    <a asp-action="Create" class="btn btn-primary">Adicionar Cinema</a>
+
+                </div>                              
+                
+            </div>
+
+        </form>
+    </div>
+
+
+          
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cinemas[0].Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cinemas[0].Cidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cinemas[0].UF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cinemas[0].Cartaz)
+            </th>
+            <th class="text-center">
+                
+                Ações
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.cinemas) {
+        <tr class="align-middle">
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cartaz)
+            </td>
+            
+            <td class="text-center">
+                <a asp-action="Edit" asp-route-id="@item.ID" class ="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar Cinema">
+
+                  <i class="bi bi-pencil"></i>
+
+                </a> 
+                <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver Detalhes">
+                    
+                  <i class="bi bi-list-ul"></i>
+                  
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Remover Cinema">
+
+                   <i class="bi bi-eraser"></i>
+
+
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
